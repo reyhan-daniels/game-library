@@ -4,12 +4,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
+public class HomePageController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndexPage() {
         return "HomePage";
     }
+
+    @RequestMapping(value = "/library", method = RequestMethod.GET)
+    public String getLibraryPage() {return "GameLibrary"; }
 
 }
