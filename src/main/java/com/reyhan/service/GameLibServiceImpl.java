@@ -14,19 +14,7 @@ public class GameLibServiceImpl implements GameLibService {
 
     private static final AtomicLong counter = new AtomicLong();
 
-    private static List<Game> games = new ArrayList<Game>();
-
-    /*static {
-        games = populateExampleGames();
-    }
-*/
-    private static List<Game> populateExampleGames() {
-        List<Game> games = new ArrayList<Game>();
-        games.add(new Game(counter.incrementAndGet(), "Pokemon Yellow", "1999", "10"));
-        games.add(new Game(counter.incrementAndGet(), "Goldeneye 007", "1997", "9.5"));
-        games.add(new Game(counter.incrementAndGet(), "Tetris", "1985", "10"));
-        return games;
-    }
+    private static final List<Game> games = new ArrayList<>();
 
     public List<Game> findAllGames() {
         return games;
@@ -61,7 +49,6 @@ public class GameLibServiceImpl implements GameLibService {
     }
 
     public void deleteGameById(long id) {
-
         for (Iterator<Game> iterator = games.iterator(); iterator.hasNext(); ) {
             Game game = iterator.next();
             if (game.getId() == id) {

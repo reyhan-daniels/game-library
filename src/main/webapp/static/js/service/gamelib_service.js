@@ -7,7 +7,7 @@ angular.module('myApp').factory('GameLibService', ['$http', '$q', function($http
     var factory = {
         fetchAllGames: fetchAllGames,
         addGame: addGame,
-        editGame: editGame,
+        updateGame: updateGame,
         deleteGame: deleteGame
     };
  
@@ -44,7 +44,7 @@ angular.module('myApp').factory('GameLibService', ['$http', '$q', function($http
     }
  
  
-    function editGame(game, id) {
+    function updateGame(game, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, game)
             .then(

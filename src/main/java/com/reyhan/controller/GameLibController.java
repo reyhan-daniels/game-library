@@ -21,29 +21,23 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class GameLibController {
 
     @Autowired
-    GameLibService gameLibService;  //Service which will do all data retrieval/manipulation work
+    GameLibService gameLibService;
 
 
 
     @RequestMapping(value = "/game/", method = RequestMethod.GET)
     public ResponseEntity<List<Game>> showLibrary() {
         List<Game> games = gameLibService.findAllGames();
-        if(games.isEmpty()){
-            return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
         return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
     }
 
-
-
-
     @RequestMapping(value = "/game/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Game> getGame(@PathVariable("id") long id) {
-        System.out.println("Retrieving Game with id " + id);
+        System.out.println("Retrieving Game with ID " + id);
         Game game = gameLibService.findById(id);
         if (game == null) {
-            System.out.println("Game with id " + id + " not found");
-            return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
+            System.out.println("Game ID :" + id + "can not be found");
+            return new ResponseEntity<Game>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
@@ -76,7 +70,7 @@ public class GameLibController {
 
         Game currentGame = gameLibService.findById(id);
 
-        if (currentGame ==null) {
+        if (currentGame==null) {
             System.out.println("The game with id " + id + " can not be found");
             return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
         }
@@ -94,11 +88,11 @@ public class GameLibController {
 
     @RequestMapping(value = "/game/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Game> deleteGame(@PathVariable("id") long id) {
-        System.out.println("Retrieving Game with id " + id);
+        System.out.println("Retrieving Game with ID " + id);
 
         Game game = gameLibService.findById(id);
         if (game == null) {
-            System.out.println("Unable to delete. Game with id " + id + " not found");
+            System.out.println("Delete Failed: Game ID: " + id + " can not be found");
             return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
         }
 

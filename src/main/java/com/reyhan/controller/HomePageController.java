@@ -14,4 +14,6 @@ public class HomePageController {
     @RequestMapping(value = "/library", method = RequestMethod.GET)
     public String getLibraryPage() {return "GameLibrary"; }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String getTestPage() {return "TwoPage";}
 }

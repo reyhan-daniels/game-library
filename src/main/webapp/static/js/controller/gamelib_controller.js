@@ -68,7 +68,7 @@ angular.module('myApp').controller('GameLibController', ['$scope', 'GameLibServi
  
     function edit(id){
         console.log('id to be edited', id);
-        for(var i = 0; i < self.games.length; i++){
+        for(var i = 0; i <= self.games.length; i++){
             if(self.games[i].id === id) {
                 self.game = angular.copy(self.games[i]);
                 break;
@@ -78,7 +78,7 @@ angular.module('myApp').controller('GameLibController', ['$scope', 'GameLibServi
  
     function remove(id){
         console.log('id to be deleted', id);
-        if(self.game.id === id) {//clean form if the game  to be deleted is shown there.
+        if(self.game.id === id) {
             reset();
         }
         deleteGame(id);
@@ -87,7 +87,7 @@ angular.module('myApp').controller('GameLibController', ['$scope', 'GameLibServi
  
     function reset(){
         self.game={id:null,title:'',year:'',rating:''};
-        $scope.myForm.$setPristine(); //reset Form
+        $scope.myForm.$setPristine();
     }
  
 }]);
